@@ -1,0 +1,12 @@
+extends layout
+
+block content
+  h1 Items
+  button 
+    a(href="/items/create") Create new item
+  ul
+    each item in items 
+        li 
+          a(href=item.url) #{item.name}
+    else 
+        li There are no items.

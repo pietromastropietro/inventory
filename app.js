@@ -9,7 +9,7 @@ var usersRouter = require('./routes/users');
 
 var app = express();
 
-// MongoDB/Mongoose setup
+/// MongoDB/Mongoose setup ///
 
 //Import the mongoose module
 const mongoose = require('mongoose');

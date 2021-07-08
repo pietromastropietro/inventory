@@ -4,10 +4,6 @@ block content
   h1= title
   p Welcome to #{title}
   p Items in catalog: #{data}
-  p List of items: 
-  ul
-    each item in list
-      li
-        p #{item.name}
-    else
-      li There are no items.
+  p Go to: 
+    a(href="/items") Items
+    a(href="/categories") Categories

@@ -12,9 +12,8 @@ const ItemSchema = new Schema({
 // Virtual for this item URL
 ItemSchema
     .virtual('url')
-    // TODO try to change into arrow func
     .get(function () {
-        return '/inventory/item/' + this._id
+        return `/items/${this._id}`;
     });
 
 // Export model
