@@ -1,0 +1,41 @@
+extends layout 
+
+block content 
+	h1=title
+
+	form(method='POST' action='')
+		label(for="name")  Name: 
+		input(type="text" name='name' placeholder='Name of item' required='true' value=(item===undefined ? '' : item.name))
+
+		label(for="description")  Description: 
+		textarea(type="textarea" name='description' placeholder='Description of item' required='true') #{item===undefined ? '' : item.description}
+
+		label(for="price")  Price: 
+		input(type="number" name='price' placeholder='Price of item' required='true' value=(item===undefined ? '' : item.price))
+
+		label(for="stockQty")  Stock quantity: 
+		input(type="number" name='stockQty' placeholder='Stock quantity' required='true' value=(item===undefined ? '' : item.stockQty))
+
+		label(for='category') Category:
+		select(type='select' placeholder='Select category' name='category' required='true')
+			for category in categories 
+				if item 
+					//-
+						Category._id is an object, so i have to cast it into a string to compare.
+						When i create a new item, item.category contains the id of the category, not the name.
+						Instead when i update an item, item.category contains a category object, so i have to select the _id property.
+					option(
+						value=category._id 
+						selected=(
+							category._id.toString()==item.category._id
+							|| category._id.toString()==item.category
+            			) ? 'selected' : false
+          			) #{category.name}
+				else
+					option(value=category._id) #{category.name}
+		button(type='submit') Submit
+	
+	if errors
+		ul
+			for error in errors
+				li!= error.msg

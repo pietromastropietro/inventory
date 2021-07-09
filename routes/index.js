@@ -26,6 +26,12 @@ router.get('/items/:id', itemController.details);
 
 /** CATEGORY ROUTES **/
 
+// GET request for creating a category
+router.get('/categories/create', categoryController.createGet);
+
+// POST request for creating a category
+router.post('/categories/create', categoryController.createPost);
+
 // GET categories list
 router.get('/categories', categoryController.list);
 
