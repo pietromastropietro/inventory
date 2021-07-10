@@ -17,6 +17,12 @@ router.get('/items/create', itemController.createGet);
 // POST request for creating an item
 router.post('/items/create', itemController.createPost);
 
+// GET request for deleting an item
+router.get('/items/:id/delete', itemController.deleteGet);
+
+// POST request for deleting an item
+router.post('/items/:id/delete', itemController.deletePost);
+
 // GET items list
 router.get('/items', itemController.list);
 

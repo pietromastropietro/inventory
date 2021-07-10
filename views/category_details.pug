@@ -3,9 +3,15 @@ extends layout
 block content
   h1 Category #{category.name}
   p Description: #{category.description}
+  p Items:
     ul
         each item in items 
             li 
               a(href=item.url) #{item.name}
         else 
             li There are no items.
+  
+  button
+    a(href="categories/delete") Delete this category
+  button
+    a(href="/categories") Go back to categories list 

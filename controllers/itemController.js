@@ -3,6 +3,7 @@ const Item = require('../models/item');
 
 const { body, validationResult } = require('express-validator');
 
+// Display list of all items.
 exports.list = async (req, res, next) => {
     try {
         const items = await Item.find();
@@ -13,6 +14,7 @@ exports.list = async (req, res, next) => {
     }
 };
 
+// Display detail page for a specific item.
 exports.details = async (req, res, next) => {
     try {
         const item = await Item.findById(req.params.id).populate('category');
@@ -23,6 +25,7 @@ exports.details = async (req, res, next) => {
     }
 }
 
+// Display item create form on GET.
 exports.createGet = async (req, res, next) => {
     try {
         const categories = await Category.find();
@@ -33,6 +36,7 @@ exports.createGet = async (req, res, next) => {
     }
 };
 
+// Handle item create on POST.
 exports.createPost = [
 
     // Validate and sanitize fields.
@@ -70,6 +74,7 @@ exports.createPost = [
         }
 
         // Data from form is valid. Save item.
+        // TODO should i remove the callback and use try/catch for consistency?
         item.save((err) => {
             if (err) {
                 return next(err);
@@ -80,3 +85,27 @@ exports.createPost = [
 
     }
 ];
+
+// Display item delete form on GET.
+exports.deleteGet = async (req, res, next) => {
+    try {
+        const item = await Item.findById(req.params.id)
+        res.render('item_delete', { item: item });
+    } catch (err) {
+        return next(err)
+    }
+};
+
+// Handle item delete on POST.
+exports.deletePost = async (req, res, next) => {
+    // TODO should i validate/sanitize the id?
+
+    try {
+        // Delete object and redirect to the list of items.
+        await Item.findByIdAndRemove(req.params.id);
+
+        res.redirect('/items');
+    } catch (err) {
+        return next(err)
+    }
+};

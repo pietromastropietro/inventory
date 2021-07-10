@@ -6,3 +6,7 @@ block content
   p Category: #{item.category.name}
   p Price: $#{item.price}
   p Stock: #{item.stockQty}
+  button
+    a(href=item.url+'/delete') Delete this item
+  button
+    a(href="/items") Go back to items list 
