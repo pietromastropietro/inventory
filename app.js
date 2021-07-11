@@ -4,6 +4,8 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 
+const private = require('./private');
+
 const indexRouter = require('./routes/index');
 
 const app = express();
@@ -14,7 +16,6 @@ const app = express();
 const mongoose = require('mongoose');
 
 //Set up default mongoose connection
-const private = require('./private');
 const mongoDB = private.MONGODBURL;
 mongoose.connect(mongoDB, {useNewUrlParser: true, useUnifiedTopology: true});
 

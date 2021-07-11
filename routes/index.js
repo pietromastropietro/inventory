@@ -23,6 +23,12 @@ router.get('/items/:id/delete', itemController.deleteGet);
 // POST request for deleting an item
 router.post('/items/:id/delete', itemController.deletePost);
 
+// GET request for updating an item
+router.get('/items/:id/update', itemController.updateGet);
+
+// POST request for updating an item
+router.post('/items/:id/update', itemController.updatePost);
+
 // GET items list
 router.get('/items', itemController.list);
 
@@ -37,6 +43,18 @@ router.get('/categories/create', categoryController.createGet);
 
 // POST request for creating a category
 router.post('/categories/create', categoryController.createPost);
+
+// GET request for deleting a category
+router.get('/categories/:id/delete', categoryController.deleteGet);
+
+// POST request for deleting a category
+router.post('/categories/:id/delete', categoryController.deletePost);
+
+// GET request for updating a category
+router.get('/categories/:id/update', categoryController.updateGet);
+
+// POST request for updating a category
+router.post('/categories/:id/update', categoryController.updatePost);
 
 // GET categories list
 router.get('/categories', categoryController.list);
