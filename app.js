@@ -3,8 +3,7 @@ const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
-
-const private = require('./private');
+require('dotenv').config()
 
 const indexRouter = require('./routes/index');
 
@@ -16,7 +15,7 @@ const app = express();
 const mongoose = require('mongoose');
 
 //Set up default mongoose connection
-const mongoDB = private.MONGODBURL;
+const mongoDB = process.env.MONGODBURL;
 mongoose.connect(mongoDB, {useNewUrlParser: true, useUnifiedTopology: true});
 
 //Get the default connection
